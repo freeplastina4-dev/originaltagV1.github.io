@@ -1,0 +1,79 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OriginalTagV1</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #111;
+            font-family: Arial, sans-serif;
+        }
+
+        .game {
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            font-size: 48px;
+            margin-bottom: 30px;
+        }
+
+        .play-button {
+            padding: 18px 60px;
+            font-size: 26px;
+            font-weight: bold;
+            color: white;
+            background: #222;
+            border: 3px solid white;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .play-button:hover {
+            transform: scale(1.08);
+            background: #333;
+        }
+
+        .play-button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="game">
+        <h1>OriginalTagV1</h1>
+
+        <button class="play-button" onclick="playGame()">
+            PLAY
+        </button>
+    </div>
+
+    <script>
+        function playGame() {
+            alert("OriginalTagV1 is starting!");
+
+            // Hier kun je later je Unity WebGL game starten.
+            // Bijvoorbeeld:
+            // window.location.href = "Build/index.html";
+        }
+    </script>
+
+</body>
+</html>
+```
