@@ -4,73 +4,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>OriginalTagV1</title>
 
     <style>
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
             min-height: 100vh;
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                radial-gradient(circle at top, #263d32 0%, #101512 45%, #050706 100%);
+
+            color: white;
+        }
+
+        /* Jungle achtergrond */
+        .leaves {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.35;
+            background:
+                radial-gradient(ellipse at 10% 20%, #31543e 0 8%, transparent 9%),
+                radial-gradient(ellipse at 90% 15%, #31543e 0 10%, transparent 11%),
+                radial-gradient(ellipse at 15% 90%, #263f30 0 12%, transparent 13%),
+                radial-gradient(ellipse at 90% 85%, #263f30 0 13%, transparent 14%);
+        }
+
+        .container {
+            position: relative;
+            min-height: 100vh;
+
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: #111;
-            font-family: Arial, sans-serif;
-        }
 
-        .game {
             text-align: center;
+            padding: 20px;
         }
 
-        h1 {
-            color: white;
-            font-size: 48px;
-            margin-bottom: 30px;
+        /* Kleine tekst */
+        .version {
+            font-size: 15px;
+            letter-spacing: 5px;
+            color: #b8c7bd;
+            margin-bottom: 15px;
+            text-transform: uppercase;
         }
 
-        .play-button {
-            padding: 18px 60px;
-            font-size: 26px;
-            font-weight: bold;
+        /* Game naam */
+        .title {
+            font-size: clamp(48px, 9vw, 100px);
+            font-weight: 1000;
+            letter-spacing: -4px;
+
             color: white;
-            background: #222;
+
+            text-shadow:
+                0 6px 0 #18241d,
+                0 10px 25px rgba(0,0,0,0.8);
+
+            margin-bottom: 12px;
+        }
+
+        .title span {
+            color: #82c99a;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #c7d0ca;
+            margin-bottom: 45px;
+        }
+
+        /* PLAY knop */
+        .play {
+            width: 260px;
+            height: 75px;
+
             border: 3px solid white;
-            border-radius: 12px;
+            border-radius: 18px;
+
+            background: linear-gradient(
+                180deg,
+                #86d49e,
+                #4d9c68
+            );
+
+            color: white;
+
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 3px;
+
             cursor: pointer;
-            transition: 0.2s;
+
+            box-shadow:
+                0 8px 0 #285438,
+                0 15px 35px rgba(0,0,0,0.55);
+
+            transition: 0.15s;
         }
 
-        .play-button:hover {
-            transform: scale(1.08);
-            background: #333;
+        .play:hover {
+            transform: translateY(-5px) scale(1.04);
+
+            box-shadow:
+                0 13px 0 #285438,
+                0 20px 40px rgba(0,0,0,0.6);
         }
 
-        .play-button:active {
-            transform: scale(0.98);
+        .play:active {
+            transform: translateY(5px);
+
+            box-shadow:
+                0 3px 0 #285438,
+                0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Onderkant */
+        .bottom {
+            position: absolute;
+            bottom: 25px;
+
+            color: #8e9992;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        /* Mobiel */
+        @media (max-width: 600px) {
+            .title {
+                letter-spacing: -2px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+            }
+
+            .play {
+                width: 220px;
+                height: 65px;
+                font-size: 23px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="game">
-        <h1>OriginalTagV1</h1>
+    <div class="leaves"></div>
 
-        <button class="play-button" onclick="playGame()">
-            PLAY
+    <main class="container">
+
+        <div class="version">
+            ORIGINAL VR EXPERIENCE
+        </div>
+
+        <h1 class="title">
+            Original<span>Tag</span>V1
+        </h1>
+
+        <p class="subtitle">
+            Swing • Run • Tag
+        </p>
+
+        <button class="play" onclick="playGame()">
+            ▶ PLAY
         </button>
-    </div>
+
+        <div class="bottom">
+            PC • MOBILE • VR
+        </div>
+
+    </main>
 
     <script>
         function playGame() {
-            alert("OriginalTagV1 is starting!");
 
-            // Hier kun je later je Unity WebGL game starten.
+            // Hier komt later je Unity WebGL game.
             // Bijvoorbeeld:
             // window.location.href = "Build/index.html";
+
+            alert("OriginalTagV1 is starting!");
         }
     </script>
 
