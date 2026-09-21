@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Original Tag</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: #000;
+        }
+
+        /* Achtergrond */
+        .menu {
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                radial-gradient(circle at center, #252525 0%, #080808 55%, #000 100%);
+
+            color: white;
+            text-align: center;
+        }
+
+        /* Titel */
+        .title {
+            font-size: clamp(45px, 8vw, 100px);
+            font-weight: 900;
+            letter-spacing: 8px;
+
+            text-shadow:
+                0 0 10px rgba(255,255,255,0.3),
+                0 0 30px rgba(255,255,255,0.15);
+
+            margin-bottom: 50px;
+        }
+
+        /* Play knop */
+        .play-button {
+            width: 280px;
+            height: 85px;
+
+            border: 2px solid white;
+            border-radius: 15px;
+
+            background: rgba(255,255,255,0.08);
+            color: white;
+
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 5px;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s,
+                background 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .play-button:hover {
+            transform: scale(1.08);
+
+            background: white;
+            color: black;
+
+            box-shadow:
+                0 0 20px white,
+                0 0 50px rgba(255,255,255,0.4);
+        }
+
+        .play-button:active {
+            transform: scale(0.96);
+        }
+
+        /* Kleine tekst */
+        .info {
+            margin-top: 25px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Game scherm */
+        #game {
+            display: none;
+
+            width: 100vw;
+            height: 100vh;
+            background: black;
+        }
+
+        #game iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Loading */
+        #loading {
+            display: none;
+            margin-top: 20px;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <div class="menu" id="menu">
+
+        <div class="title">
+            ORIGINAL TAG
+        </div>
+
+        <button class="play-button" onclick="startGame()">
+            PLAY
+        </button>
+
+        <div id="loading">
+            Loading game...
+        </div>
+
+        <div class="info">
+            Play on PC & mobile
+        </div>
+
+    </div>
+
+
+    <!-- UNITY GAME -->
+    <div id="game">
+        <iframe id="unityGame"></iframe>
+    </div>
+
+
+    <script>
+
+        function startGame() {
+
+            const menu = document.getElementById("menu");
+            const game = document.getElementById("game");
+            const unityGame = document.getElementById("unityGame");
+            const loading = document.getElementById("loading");
+
+            loading.style.display = "block";
+
+            /*
+            ==========================================
+            UNITY GAME
+            ==========================================
+
+            Zet hier de locatie van jouw Unity WebGL game.
+
+            Bijvoorbeeld:
+
+            Build/index.html
+
+            */
+
+            unityGame.src = "Build/index.html";
+
+
+            setTimeout(function() {
+
+                menu.style.display = "none";
+                game.style.display = "block";
+
+            }, 500);
+
+        }
+
+    </script>
+
+</body>
+</html>
