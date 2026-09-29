@@ -1,203 +1,122 @@
-```html
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>OriginalTagV1</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            overflow: hidden;
-            font-family: Arial, Helvetica, sans-serif;
-
-            background:
-                radial-gradient(circle at top, #263d32 0%, #101512 45%, #050706 100%);
-
-            color: white;
-        }
-
-        /* Jungle achtergrond */
-        .leaves {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.35;
-            background:
-                radial-gradient(ellipse at 10% 20%, #31543e 0 8%, transparent 9%),
-                radial-gradient(ellipse at 90% 15%, #31543e 0 10%, transparent 11%),
-                radial-gradient(ellipse at 15% 90%, #263f30 0 12%, transparent 13%),
-                radial-gradient(ellipse at 90% 85%, #263f30 0 13%, transparent 14%);
-        }
-
-        .container {
-            position: relative;
-            min-height: 100vh;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            text-align: center;
-            padding: 20px;
-        }
-
-        /* Kleine tekst */
-        .version {
-            font-size: 15px;
-            letter-spacing: 5px;
-            color: #b8c7bd;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        /* Game naam */
-        .title {
-            font-size: clamp(48px, 9vw, 100px);
-            font-weight: 1000;
-            letter-spacing: -4px;
-
-            color: white;
-
-            text-shadow:
-                0 6px 0 #18241d,
-                0 10px 25px rgba(0,0,0,0.8);
-
-            margin-bottom: 12px;
-        }
-
-        .title span {
-            color: #82c99a;
-        }
-
-        .subtitle {
-            font-size: 18px;
-            color: #c7d0ca;
-            margin-bottom: 45px;
-        }
-
-        /* PLAY knop */
-        .play {
-            width: 260px;
-            height: 75px;
-
-            border: 3px solid white;
-            border-radius: 18px;
-
-            background: linear-gradient(
-                180deg,
-                #86d49e,
-                #4d9c68
-            );
-
-            color: white;
-
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: 3px;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 8px 0 #285438,
-                0 15px 35px rgba(0,0,0,0.55);
-
-            transition: 0.15s;
-        }
-
-        .play:hover {
-            transform: translateY(-5px) scale(1.04);
-
-            box-shadow:
-                0 13px 0 #285438,
-                0 20px 40px rgba(0,0,0,0.6);
-        }
-
-        .play:active {
-            transform: translateY(5px);
-
-            box-shadow:
-                0 3px 0 #285438,
-                0 8px 20px rgba(0,0,0,0.5);
-        }
-
-        /* Onderkant */
-        .bottom {
-            position: absolute;
-            bottom: 25px;
-
-            color: #8e9992;
-            font-size: 13px;
-            letter-spacing: 2px;
-        }
-
-        /* Mobiel */
-        @media (max-width: 600px) {
-            .title {
-                letter-spacing: -2px;
-            }
-
-            .subtitle {
-                font-size: 15px;
-            }
-
-            .play {
-                width: 220px;
-                height: 65px;
-                font-size: 23px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="leaves"></div>
-
-    <main class="container">
-
-        <div class="version">
-            ORIGINAL VR EXPERIENCE
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | oldplaytag</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
         </div>
-
-        <h1 class="title">
-            Original<span>Tag</span>V1
-        </h1>
-
-        <p class="subtitle">
-            Swing • Run • Tag
-        </p>
-
-        <button class="play" onclick="playGame()">
-            ▶ PLAY
-        </button>
-
-        <div class="bottom">
-            PC • MOBILE • VR
-        </div>
-
-    </main>
-
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">oldplaytag</div>
+      </div>
+    </div>
     <script>
-        function playGame() {
 
-            // Hier komt later je Unity WebGL game.
-            // Bijvoorbeeld:
-            // window.location.href = "Build/index.html";
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
 
-            alert("OriginalTagV1 is starting!");
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
         }
-    </script>
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
 
-</body>
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/Downloads.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/Downloads.data.br",
+        frameworkUrl: buildUrl + "/Downloads.framework.js.br",
+        codeUrl: buildUrl + "/Downloads.wasm.br",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "original tag",
+        productName: "oldplaytag",
+        productVersion: "0.0.0",
+        showBanner: unityShowBanner,
+      };
+
+      // By default, Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        container.className = "unity-mobile";
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
+      }
+
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+              }).then((unityInstance) => {
+                loadingBar.style.display = "none";
+                fullscreenButton.onclick = () => {
+                  unityInstance.SetFullscreen(1);
+                };
+              }).catch((message) => {
+                alert(message);
+              });
+            };
+
+      document.body.appendChild(script);
+
+    </script>
+  </body>
 </html>
-```
